@@ -1,87 +1,151 @@
-# Multi-Agent Research System
+# ⚡ Orchestrix AI
 
-An AI-powered research application that automates web research, extracts webpage content, generates structured research reports, and evaluates report quality using an AI critic.
+### Multi-Agent Research Pipeline
 
-## Features
+Orchestrix AI is a Python-based multi-agent research system that automates the research process using specialized AI agents. It searches the web for relevant information, extracts content from selected sources, generates a structured research report, and evaluates the report using a critic agent.
 
-- **Web Research:** Retrieves relevant information using Tavily Search.
-- **Web Scraping:** Extracts readable content from webpages using Requests and BeautifulSoup.
-- **AI Report Generation:** Uses Google Gemini to generate structured research reports.
-- **AI Critic:** Evaluates reports for factual accuracy, source quality, unsupported claims, and missing information.
-- **Interactive Interface:** Uses Streamlit to run the research pipeline and display results.
-- **Error Handling:** Includes API retries, timeout configuration, and error handling for web requests.
+## 🚀 Live Demo
 
-## Tech Stack
+**Try Orchestrix AI:** [Launch the Live App](https://orchestrix-ai.streamlit.app/)
 
-- **Language:** Python
-- **LLM:** Google Gemini
-- **AI Frameworks:** LangChain, LangGraph
-- **Search API:** Tavily
-- **Web Scraping:** BeautifulSoup, Requests
-- **Frontend:** Streamlit
-- **Environment Management:** Python virtual environment, python-dotenv
+Explore the application by entering a research topic and letting the AI agents work through the research pipeline.
 
-## System Workflow
+## ✨ Features
 
-1. **Search Agent:** Searches the web for relevant research information.
-2. **Reader Agent:** Selects a relevant URL and extracts webpage content.
-3. **Writer Chain:** Generates a structured research report using the gathered information.
-4. **Critic Chain:** Evaluates the report against the supplied research evidence and provides a score and feedback.
+- **Web Research:** Searches the web for relevant information using Tavily.
+- **Content Extraction:** Retrieves and extracts useful content from selected web pages.
+- **AI-Powered Report Generation:** Uses Google Gemini to generate structured research reports.
+- **Report Evaluation:** A critic agent evaluates the generated report against the collected research.
+- **Multi-Agent Workflow:** Separates searching, reading, writing, and reviewing into distinct stages.
+- **Interactive Interface:** Provides a Streamlit-based interface for running research tasks.
+- **Error Handling:** Includes handling for search, scraping, and model request failures.
 
-## Project Structure
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| Python | Core programming language |
+| Streamlit | Interactive web application |
+| LangChain | LLM integration and prompt management |
+| LangGraph | Multi-agent workflow orchestration |
+| Google Gemini | AI-powered report generation and evaluation |
+| Tavily Search API | Web search and research discovery |
+| Beautiful Soup | HTML content extraction |
+| Requests | HTTP requests and webpage retrieval |
+| python-dotenv | Local environment variable management |
+| Git and GitHub | Version control and source code hosting |
+
+## 🏗️ Project Structure
 
 ```text
 multi-agent-research-system/
-├── .streamlit/
-│   └── config.toml
-├── agents.py
-├── app.py
-├── pipeline.py
-├── tools.py
-├── requirements.txt
-├── .env.example
-├── .gitignore
-└── README.md
+│
+├── app.py              # Streamlit user interface
+├── agents.py           # AI model configuration and agent prompts
+├── pipeline.py         # Research pipeline orchestration
+├── tools.py            # Web search and webpage extraction tools
+├── requirements.txt    # Python dependencies
+├── .env.example        # Example environment configuration
+├── .gitignore          # Files excluded from version control
+└── README.md           # Project documentation
 ```
 
-## Prerequisites
+## 🔄 How It Works
 
-- Python 3.10 or later
+Orchestrix AI follows a multi-stage research workflow.
+
+### 1. Search Agent
+
+Uses the Tavily Search API to discover relevant web pages and gather information related to the user's research topic.
+
+### 2. Reader Agent
+
+Retrieves and extracts useful text from a selected webpage using Requests and Beautiful Soup.
+
+### 3. Writer Agent
+
+Uses Google Gemini to synthesize the collected information into a structured research report.
+
+### 4. Critic Agent
+
+Reviews the generated report against the research material to identify unsupported claims and suggest improvements.
+
+### Workflow Overview
+
+```text
+Research Topic
+      │
+      ▼
+  Search Agent
+      │
+      ▼
+  Reader Agent
+      │
+      ▼
+  Writer Agent
+      │
+      ▼
+  Critic Agent
+      │
+      ▼
+Final Research Report
+```
+
+## 💻 Getting Started
+
+Follow these instructions to run Orchestrix AI locally.
+
+### Prerequisites
+
+Install the following:
+
+- Python
+- Git
+- Visual Studio Code or another Python IDE
 - Google Gemini API key
 - Tavily API key
 
-## Installation and Setup
-
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/multi-agent-research-system.git
+git clone https://github.com/asmiraut23/multi-agent-research-system.git
+```
+
+Navigate to the project directory:
+
+```bash
 cd multi-agent-research-system
 ```
 
-Replace `YOUR_USERNAME` with your GitHub username.
-
-### 2. Create a virtual environment
+### 2. Create a Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate it on Windows:
+Activate it on Windows PowerShell:
 
 ```powershell
-.venv\Scripts\Activate.ps1
+.\.venv\Scripts\Activate.ps1
 ```
 
-### 3. Install dependencies
+### 3. Install Dependencies
+
+Install the packages listed in `requirements.txt`:
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-### 4. Configure environment variables
+If you use `uv`, you can install the dependencies with:
 
-Create a `.env` file in the project root using `.env.example` as a reference.
+```bash
+uv pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables
+
+Create a `.env` file in the project root directory.
 
 Add your API keys:
 
@@ -92,38 +156,62 @@ TAVILY_API_KEY=your_tavily_api_key
 
 Replace the placeholder values with your actual API keys.
 
-**Security:** Never commit your `.env` file or expose your API keys publicly.
+**Security:** Never commit your `.env` file or publish your API keys to GitHub.
 
-### 5. Run the application
+### 5. Run the Application
+
+Start the Streamlit application:
 
 ```bash
 python -m streamlit run app.py
 ```
 
-Open the local URL displayed in the terminal to access the application.
+Open the local URL displayed in your terminal, usually:
 
-## Example Use Case
+```text
+http://localhost:8501
+```
 
-Enter a research topic, such as:
+## 🔑 API Configuration
 
-`Applications of Multi-Agent AI Systems in Healthcare`
+Orchestrix AI requires API credentials for its external services.
 
-The application searches for relevant information, extracts webpage content, generates a research report, and evaluates the report using the AI critic.
+| Environment Variable | Purpose |
+|---|---|
+| `GOOGLE_API_KEY` | Authenticates requests to Google Gemini |
+| `TAVILY_API_KEY` | Authenticates web search requests through Tavily |
 
-## Future Improvements
+For Streamlit Community Cloud, configure these values in the application's **Secrets** settings rather than committing them to the repository.
 
-- Gather evidence from multiple relevant webpages.
-- Improve source citations and claim-level traceability.
-- Add report download functionality.
-- Enhance research evaluation and reporting.
+## ☁️ Deployment
 
-## Security and Limitations
+Orchestrix AI is configured for deployment using Streamlit Community Cloud.
 
-- API keys must be configured securely through environment variables or the deployment platform's secrets manager.
-- Web scraping results depend on website accessibility and content structure.
-- Report accuracy depends on the quality and coverage of the retrieved evidence.
-- The AI critic provides automated feedback; its score should not be treated as a guarantee of factual correctness.
+**Live application:** [https://orchestrix-ai.streamlit.app/](https://orchestrix-ai.streamlit.app/)
 
-## Author
+The deployed application requires the correct entry-point file, installed dependencies, and valid API credentials.
+
+## ⚠️ Limitations
+
+- Research quality depends on the relevance and availability of search results.
+- The Reader Agent extracts content from a selected webpage, so the report may not reflect every available source.
+- Some websites may block automated requests or restrict access to their content.
+- AI-generated reports may contain inaccuracies and should be checked against the cited research.
+- API availability, rate limits, and network errors can affect execution.
+- The Critic Agent provides an additional review but does not guarantee that every factual error will be detected.
+
+## 🔮 Future Improvements
+
+Potential enhancements include:
+
+- Extracting information from multiple sources in a single research run.
+- Adding direct source links and citations throughout the generated report.
+- Implementing automatic retries and improved recovery from API failures.
+- Adding report export options such as PDF and Markdown.
+- Introducing source relevance scoring and more detailed evidence verification.
+- Providing execution timing and agent-level status information in the interface.
+
+## 👩‍💻 Author
 
 **Asmi Raut**
+
